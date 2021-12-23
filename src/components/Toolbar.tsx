@@ -50,6 +50,11 @@ export function Toolbar({ activeStates, lastEvent }: ToolbarProps) {
             <Users />
           </Highlight>
         </PrimaryToolButton>
+        <PrimaryToolButton id="sperson" isActive={machine.isIn('sperson')} onClick={onToolSelect} title="Add SVG with x2 ViewBox and size attributes">
+          <Highlight>
+            <Square />
+          </Highlight>
+        </PrimaryToolButton>
         {/* <PrimaryToolButton id="arrow" isActive={machine.isIn('arrow')} onClick={onToolSelect}>
           <Highlight>
             <ArrowUpRight />

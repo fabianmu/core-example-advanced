@@ -413,6 +413,46 @@ export const machine = createState({
         },
       },
     },
+    sperson: {
+      initial: 'idle',
+      states: {
+        idle: {
+          on: {
+            STARTED_POINTING: {
+              do: 'setInitialPoint',
+              to: 'sperson.pointing',
+            },
+          },
+        },
+        pointing: {
+          on: {
+            MOVED_POINTER: {
+              if: 'hasLeftDeadZone',
+              to: 'sperson.creating',
+            },
+            STOPPED_POINTING: {
+              to: 'sperson.idle',
+            },
+          },
+        },
+        creating: {
+          onEnter: ['createSpersonShape', 'setSnapshot'],
+          on: {
+            TOGGLED_MODIFIER: 'transformSelectedShapes',
+            MOVED_POINTER: 'transformSelectedShapes',
+            PANNED: 'transformSelectedShapes',
+            CANCELLED: {
+              do: 'deleteSelectedShapes',
+              to: 'select',
+            },
+            STOPPED_POINTING: {
+              do: 'addToHistory',
+              to: 'select',
+            },
+          },
+        },
+      },
+    },
     arrow: {
       initial: 'idle',
       states: {

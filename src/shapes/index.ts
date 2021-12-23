@@ -2,6 +2,7 @@ import type { CustomShapeUtil } from './CustomShapeUtil'
 import { ArrowShape, ArrowUtil } from './arrow'
 import { PersonShape, PersonUtil } from './person'
 import { VpersonShape, VpersonUtil } from './vperson'
+import { SpersonShape, SpersonUtil } from './sperson'
 import { BoxShape, BoxUtil } from './box'
 import { PencilShape, PencilUtil } from './pencil'
 
@@ -9,6 +10,7 @@ export * from './arrow'
 export * from './pencil'
 export * from './person'
 export * from './vperson'
+export * from './sperson'
 export * from './box'
 
 export type Shape = BoxShape | ArrowShape | PencilShape | PersonShape
@@ -19,6 +21,7 @@ export const shapeUtils = {
   pencil: new PencilUtil(),
   person: new PersonUtil(),
   vperson: new VpersonUtil(),
+  sperson: new SpersonUtil(),
 }
 
 export const getShapeUtils = <T extends Shape>(shape: T | T['type']) => {
